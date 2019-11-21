@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.lilithsthrone.game.inventory.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -52,10 +53,6 @@ import com.lilithsthrone.game.character.race.Subspecies;
 import com.lilithsthrone.game.dialogue.DialogueFlagValue;
 import com.lilithsthrone.game.dialogue.DialogueNode;
 import com.lilithsthrone.game.dialogue.utils.UtilText;
-import com.lilithsthrone.game.inventory.AbstractCoreItem;
-import com.lilithsthrone.game.inventory.CharacterInventory;
-import com.lilithsthrone.game.inventory.ItemTag;
-import com.lilithsthrone.game.inventory.Rarity;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothing;
 import com.lilithsthrone.game.inventory.clothing.AbstractClothingType;
 import com.lilithsthrone.game.inventory.clothing.ClothingType;
@@ -350,9 +347,9 @@ public class Nyan extends NPC {
 		for(AbstractClothingType clothing : ClothingType.getAllClothing()) {
 			try {
 				if(clothing!=null && clothing.getDefaultItemTags().contains(ItemTag.SOLD_BY_NYAN)) {
-					if(clothing.getRarity() == Rarity.COMMON) {
+					if(clothing.getRarity() == Rarity.COMMON || clothing.getRarity() == Rarity.UNCOMMON || clothing.getRarity() == Rarity.RARE ) {
 						if(clothing.getFemininityRestriction()==Femininity.FEMININE) {
-							if(ClothingType.getCoreClothingSlots().contains(clothing.getEquipSlots().get(0))) {
+							if(ClothingType.getCoreClothingSlots().contains(clothing.getEquipSlots().get(0)) || clothing.getEquipSlots().get(0) == InventorySlot.TORSO_OVER) {
 								commonFemaleClothing.add(AbstractClothingType.generateClothing(clothing, false));
 								
 							} else if(ClothingType.getLingerieSlots().contains(clothing.getEquipSlots().get(0))) {
@@ -363,7 +360,7 @@ public class Nyan extends NPC {
 							}
 							
 						} else if(clothing.getFemininityRestriction()==Femininity.MASCULINE) {
-							if(ClothingType.getCoreClothingSlots().contains(clothing.getEquipSlots().get(0))) {
+							if(ClothingType.getCoreClothingSlots().contains(clothing.getEquipSlots().get(0)) || clothing.getEquipSlots().get(0) == InventorySlot.TORSO_OVER) {
 								commonMaleClothing.add(AbstractClothingType.generateClothing(clothing, false));
 								
 							} else if(ClothingType.getLingerieSlots().contains(clothing.getEquipSlots().get(0))) {
@@ -374,7 +371,7 @@ public class Nyan extends NPC {
 							}
 							
 						} else {
-							if(ClothingType.getCoreClothingSlots().contains(clothing.getEquipSlots().get(0))) {
+							if(ClothingType.getCoreClothingSlots().contains(clothing.getEquipSlots().get(0)) || clothing.getEquipSlots().get(0) == InventorySlot.TORSO_OVER) {
 								commonAndrogynousClothing.add(AbstractClothingType.generateClothing(clothing, false));
 								
 							} else if(ClothingType.getLingerieSlots().contains(clothing.getEquipSlots().get(0))) {
