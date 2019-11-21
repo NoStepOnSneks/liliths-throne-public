@@ -155,7 +155,11 @@ public abstract class AbstractBreastType implements BodyPartTypeInterface {
 			
 		} else {
 			if(namesFlatPlural==null) {
-				return UtilText.returnStringAtRandom("pecs");
+				if (gc.isFeminine()){
+					return UtilText.returnStringAtRandom("breasts");
+				} else {
+					return UtilText.returnStringAtRandom("pecs");
+				}
 			}
 			return Util.randomItemFrom(namesFlatPlural);
 		}
